@@ -1,0 +1,423 @@
+/*
+ * Global styles for the Nexus intimacy logging application.
+ *
+ * This stylesheet applies a dark, atmospheric theme reminiscent of the original
+ * design shown in the user's screenshots. A gradient background creates depth
+ * while purple accents draw the eye to interactive elements. Layouts rely on
+ * CSS Grid and Flexbox to ensure responsiveness across screen sizes.
+ */
+
+/* Reset some defaults */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  color: #eae8f2;
+  background: linear-gradient(135deg, #020024, #061d42);
+}
+
+/* Container that wraps the entire app; used to position the bottom nav */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-bottom: 70px; /* space for bottom nav */
+}
+
+/* Common header used on pages */
+.page-header {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  position: relative;
+}
+
+/* Gear/settings icon inside page headers */
+.page-header .settings-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #b388ff;
+}
+
+/* Bottom navigation bar */
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #bfbfff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item i {
+  font-size: 1.2rem;
+}
+
+.nav-item.active {
+  color: #c5b3ff;
+}
+
+.nav-item:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Partners Page */
+.partners-page {
+  padding: 1rem;
+}
+
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.partner-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.partner-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.partner-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.partner-card-placeholder {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: #b388ff;
+}
+
+.partner-card .partner-name {
+  font-weight: 600;
+}
+
+.partner-card .partner-stats {
+  font-size: 0.7rem;
+  color: #ccc;
+}
+
+.add-partner-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b388ff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-partner-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Profile Page */
+.profile-page {
+  padding: 1rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+}
+
+.profile-card .icon {
+  font-size: 1.5rem;
+  color: #b388ff;
+}
+
+.profile-card .title {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Profile photo within the self card */
+.profile-photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0.5rem;
+}
+
+.profile-placeholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #b388ff;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 0.7rem;
+  color: #b0b8da;
+}
+
+/* Edit Profile Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.edit-dialog {
+  background: #0e1330;
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.edit-dialog h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+.edit-dialog label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color: #b0b8da;
+}
+
+.edit-dialog input[type="text"],
+.edit-dialog input[type="date"],
+.edit-dialog input[type="file"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1f2544;
+  color: #eae8f2;
+  font-size: 0.9rem;
+}
+
+.edit-dialog .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, #7e57c2, #5c6bc0);
+  color: #fff;
+  transition: filter 0.2s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn.cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #eae8f2;
+}
+
+/* Settings Page */
+.settings-page {
+  padding: 1rem;
+}
+
+.settings-section {
+  margin-bottom: 1.5rem;
+}
+
+.settings-section h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #b0b8da;
+  text-transform: uppercase;
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-row:last-child {
+  border-bottom: none;
+}
+
+.settings-row .label {
+  font-size: 0.9rem;
+}
+
+.settings-row .value {
+  font-size: 0.8rem;
+  color: #b0b8da;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #666;
+  border-radius: 24px;
+  transition: 0.2s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+input:checked + .slider {
+  background-color: #7e57c2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Page-specific tweaks */
+.settings-page .link-row {
+  cursor: pointer;
+  color: #b388ff;
+}
+
+.settings-page .link-row:hover {
+  text-decoration: underline;
+}
+
+/* Status label for permissions */
+.not-granted {
+  color: #b388ff;
+  font-size: 0.8rem;
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
